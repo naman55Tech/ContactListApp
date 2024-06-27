@@ -6,12 +6,15 @@ import {Contact} from '../../utils/types';
 import {ContactView} from '../../components/contact/ContactView';
 import {sampleContacts} from '../../utils/data';
 import {sortContactsList} from '../../utils/utils';
+import {CustomDialog} from '../../components/customDilaog/CustomDialog';
+import AddContactForm from '../../components/addContactForm/AddContactForm';
 
 type Props = {};
 
 export const Contacts: React.FC<Props> = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [filteredContacts, setFilteredContacts] = useState<Contact[]>([]);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   useEffect(() => {
     const sortedContacts = sortContactsList(sampleContacts);
@@ -33,7 +36,12 @@ export const Contacts: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Contacts</Text>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar
+        onSearch={handleSearch}
+        onOptionClick={() => {
+          setIsShowModal(true);
+        }}
+      />
       {filteredContacts.length ? (
         <FlatList
           data={filteredContacts}
@@ -43,6 +51,9 @@ export const Contacts: React.FC<Props> = () => {
       ) : (
         <Text style={styles.noContactText}>No Contacts Found</Text>
       )}
+      <CustomDialog visible={isShowModal} title="Add Contact">
+        <AddContactForm onCancel={() => setIsShowModal(false)} />
+      </CustomDialog>
     </View>
   );
 };

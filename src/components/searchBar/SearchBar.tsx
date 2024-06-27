@@ -4,12 +4,14 @@ import {View, TextInput} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign'; // Adjust the icon library and icon name as needed
 import {styles} from './SearchBar.styles';
 import {Colors} from '../../utils/colors';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
+  onOptionClick: () => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({onSearch}) => {
+const SearchBar: React.FC<SearchBarProps> = ({onSearch, onOptionClick}) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (query: string) => {
@@ -31,6 +33,13 @@ const SearchBar: React.FC<SearchBarProps> = ({onSearch}) => {
         onChangeText={handleSearch}
         value={searchQuery}
         placeholderTextColor={Colors.white}
+      />
+      <Entypo
+        name="dots-three-vertical"
+        onPress={onOptionClick}
+        size={20}
+        color={Colors.white}
+        style={styles.icon}
       />
     </View>
   );

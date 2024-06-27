@@ -7,13 +7,14 @@ import {
   Text,
   Button,
 } from 'react-native';
+import {Colors} from '../../utils/colors';
 
 type Props = {
   visible: boolean;
   onCancel?: () => void;
   onConfirm?: () => void;
   title: string;
-  content: string;
+  content?: string;
   confirmBtnText?: string;
   cancelBtnText?: string;
   titleStyle?: {};
@@ -31,6 +32,7 @@ export const CustomDialog: React.FC<Props> = ({
   cancelBtnText,
   titleStyle,
   contentStyle,
+  children,
 }) => {
   return (
     <Modal
@@ -47,6 +49,7 @@ export const CustomDialog: React.FC<Props> = ({
           <Text style={[customModalStyles.contentText, contentStyle]}>
             {content}
           </Text>
+          {children}
           <View style={customModalStyles.btnContainer}>
             {onCancel && (
               <Button onPress={onCancel} title={cancelBtnText ?? ''} />
@@ -69,9 +72,9 @@ const customModalStyles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   innerContainer: {
-    backgroundColor: 'white',
+    backgroundColor: Colors.orange,
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 20,
     width: '80%',
   },
   btnContainer: {
@@ -97,6 +100,7 @@ const customModalStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginVertical: 3,
+    color: Colors.white,
   },
   contentText: {alignSelf: 'center', fontSize: 15, marginVertical: 5},
 });
