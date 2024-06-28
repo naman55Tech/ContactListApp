@@ -29,6 +29,8 @@ export const ContactView: React.FC<props> = ({contact}) => {
         <Text style={styles.subDetail}>{contact.phone}</Text>
       </View>
 
+      <View style={styles.horizontal} />
+
       <View style={styles.subDetailContainer}>
         <AntDesign name="mail" color={Colors.white} size={20} />
         <Text style={styles.subDetail}>{contact.email}</Text>

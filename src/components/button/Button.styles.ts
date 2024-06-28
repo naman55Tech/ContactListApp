@@ -3,7 +3,7 @@ import {Colors} from '../../utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.lightBrown,
+    backgroundColor: Colors.white,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    color: Colors.orange,
+    color: Colors.black,
     fontSize: 18,
     fontWeight: '600',
   },

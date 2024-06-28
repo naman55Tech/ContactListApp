@@ -3,7 +3,7 @@ import {Colors} from '../../utils/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroundBlack,
+    backgroundColor: '#161616',
     height: '100%',
   },
   headerContainer: {

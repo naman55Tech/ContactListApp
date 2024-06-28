@@ -8,14 +8,14 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     marginHorizontal: 15,
     marginVertical: 15,
-    backgroundColor: Colors.red,
+    backgroundColor: '#070707',
   },
   innerContainer: {
     flexDirection: 'row',
   },
   subDetailContainer: {
     flexDirection: 'row',
-    marginTop: 15,
+    marginVertical: 15,
     marginLeft: 15,
   },
   image: {height: 40, width: 40, borderRadius: 20, marginEnd: 20},
@@ -42,5 +42,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
     marginTop: 5,
+  },
+  horizontal: {
+    height: 1,
+    backgroundColor: '#1E1E1E',
   },
 });
