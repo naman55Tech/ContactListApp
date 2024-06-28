@@ -46,6 +46,16 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
+### If build fails for Android then follow below steps
+
+```bash
+# Open project in android studio and build project
+
+# open project in VS Code
+adb reverse tcp:8081 tcp:8081
+npx react-native start
+```
+
 ## Step 3: Modifying your App
 
 Now that you have successfully run the app, let's modify it.
