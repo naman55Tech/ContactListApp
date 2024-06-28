@@ -1,57 +1,43 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import {styles} from './Contacts.styles';
 import SearchBar from '../../components/searchBar/SearchBar';
 import {Contact} from '../../utils/types';
 import {ContactView} from '../../components/contact/ContactView';
-import {sampleContacts} from '../../utils/data';
-import {sortContactsList} from '../../utils/utils';
 import {CustomDialog} from '../../components/customDilaog/CustomDialog';
 import AddContactForm from '../../components/addContactForm/AddContactForm';
+import {useContactListContext} from '../../context/ContactContext';
+import {Strings} from '../../utils/strings';
 
 type Props = {};
 
 export const Contacts: React.FC<Props> = () => {
-  const [contacts, setContacts] = useState<Contact[]>([]);
-  const [filteredContacts, setFilteredContacts] = useState<Contact[]>([]);
   const [isShowModal, setIsShowModal] = useState(false);
-
-  useEffect(() => {
-    const sortedContacts = sortContactsList(sampleContacts);
-    setContacts(sortedContacts);
-    setFilteredContacts(sortedContacts); // Initialize filteredContacts with all contacts
-  }, []);
+  const {data, handleSearch} = useContactListContext();
 
   const renderContact = (item: Contact) => {
     return <ContactView contact={item} />;
   };
 
-  const handleSearch = (query: string) => {
-    const filtered = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(query.toLowerCase()),
-    );
-    setFilteredContacts(filtered);
-  };
-
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Contacts</Text>
+      <Text style={styles.heading}>{Strings.CONTACTS}</Text>
       <SearchBar
         onSearch={handleSearch}
         onOptionClick={() => {
           setIsShowModal(true);
         }}
       />
-      {filteredContacts.length ? (
+      {data?.filteredContacts?.length ? (
         <FlatList
-          data={filteredContacts}
+          data={data?.filteredContacts}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => renderContact(item)}
         />
       ) : (
-        <Text style={styles.noContactText}>No Contacts Found</Text>
+        <Text style={styles.noContactText}>{Strings.NO_CONTACT_FOUND}</Text>
       )}
-      <CustomDialog visible={isShowModal} title="Add Contact">
+      <CustomDialog visible={isShowModal} title={Strings.ADD_CONTACT}>
         <AddContactForm onCancel={() => setIsShowModal(false)} />
       </CustomDialog>
     </View>

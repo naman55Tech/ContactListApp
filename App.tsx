@@ -6,14 +6,19 @@
  */
 
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
 
 import {Contacts} from './src/screens/contacts/Contacts';
+import {ContactListProvider} from './src/context/ContactContext';
+import {Colors} from './src/utils/colors';
 
 function App(): React.JSX.Element {
   return (
     <SafeAreaView>
-      <Contacts />
+      <StatusBar backgroundColor={Colors.backgroundBlack} />
+      <ContactListProvider>
+        <Contacts />
+      </ContactListProvider>
     </SafeAreaView>
   );
 }

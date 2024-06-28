@@ -7,4 +7,5 @@ export const Colors = {
   backgroundBlack: 'rgba(51,51,51,255)',
   red: 'rgba(255,73,76,255)',
   transparent: 'rgba(0,0,0,0)',
+  pink: 'rgb(210, 82, 127)',
 };

@@ -1,0 +1,18 @@
+export const Strings = {
+  CONTACTS: 'Contacts',
+  NO_CONTACT_FOUND: 'No Contacts Found',
+  ADD_CONTACT: 'Add Contact',
+  ENTER_NAME: 'Enter name',
+  ENTER_PHONE: 'Enter phone number',
+  ENTER_EMAIL: 'Enter email address',
+  ENTER_ADDRESS: 'Enter address',
+  CANCEL: 'Cancel',
+  SAVE: 'Save',
+  NAME_COLON: 'Name: ',
+  PHONE_COLON: 'Phone: ',
+  EMAIL_COLON: 'Email: ',
+  ADDRESS_COLON: 'Address: ',
+  REQUIRED_FIELDS: 'Please fill all required fields',
+  INVALID_PHONE_NUMBER: 'Invalid phone number',
+  INVALID_EMAIL: 'Invalid Email',
+};
