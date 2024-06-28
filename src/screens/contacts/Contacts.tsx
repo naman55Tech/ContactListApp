@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {ListRenderItemInfo, Text, View} from 'react-native';
 import {styles} from './Contacts.styles';
 import SearchBar from '../../components/searchBar/SearchBar';
 import {Contact} from '../../utils/types';
@@ -9,6 +9,9 @@ import ContactForm from '../../components/addContactForm/ContactForm';
 import {useContactListContext} from '../../context/ContactContext';
 import {Strings} from '../../utils/strings';
 import {ActionTypes} from '../../utils/data';
+import {RowMap, SwipeListView} from 'react-native-swipe-list-view';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {Colors} from '../../utils/colors';
 
 type Props = {};
 
@@ -20,7 +23,11 @@ export const Contacts: React.FC<Props> = () => {
     action: string;
   }>();
 
-  const {data, handleSearch, deleteContact} = useContactListContext();
+  const {
+    data: contactList,
+    handleSearch,
+    deleteContact,
+  } = useContactListContext();
 
   const resetActionData = () => {
     setIsShowWarningModal(false);
@@ -28,20 +35,42 @@ export const Contacts: React.FC<Props> = () => {
     setContactToTakeAction(undefined);
   };
 
-  const renderContact = (item: Contact) => {
+  const renderHiddenItem = (
+    data: ListRenderItemInfo<Contact>,
+    _rowMap: RowMap<Contact>,
+  ) => {
     return (
-      <ContactView
-        contact={item}
-        onDeletePress={(contact, action) => {
-          setContactToTakeAction({contact, action});
-          setIsShowWarningModal(true);
-        }}
-        onEditPress={(contact, action) => {
-          setContactToTakeAction({contact, action});
-          setShowContactForm(true);
-        }}
-      />
+      <View style={styles.hiddenContainer}>
+        <AntDesign
+          name="edit"
+          color={Colors.white}
+          size={25}
+          onPress={() => {
+            setContactToTakeAction({
+              contact: data.item,
+              action: ActionTypes.edit,
+            });
+            setShowContactForm(true);
+          }}
+        />
+        <AntDesign
+          name="delete"
+          color={Colors.white}
+          size={25}
+          onPress={() => {
+            setContactToTakeAction({
+              contact: data.item,
+              action: ActionTypes.delete,
+            });
+            setIsShowWarningModal(true);
+          }}
+        />
+      </View>
     );
+  };
+
+  const renderContact = (item: Contact) => {
+    return <ContactView contact={item} />;
   };
 
   return (
@@ -53,11 +82,15 @@ export const Contacts: React.FC<Props> = () => {
           setShowContactForm(true);
         }}
       />
-      {data?.filteredContacts?.length ? (
-        <FlatList
-          data={data?.filteredContacts}
+      {contactList?.filteredContacts?.length ? (
+        <SwipeListView
+          data={contactList?.filteredContacts}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => renderContact(item)}
+          renderHiddenItem={renderHiddenItem}
+          leftOpenValue={120}
+          disableLeftSwipe={true}
+          closeOnRowBeginSwipe
         />
       ) : (
         <Text style={styles.noContactText}>{Strings.NO_CONTACT_FOUND}</Text>

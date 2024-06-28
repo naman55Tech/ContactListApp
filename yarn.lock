@@ -3035,6 +3035,7 @@ __metadata:
     prettier: 2.8.8
     react: 18.2.0
     react-native: 0.74.2
+    react-native-swipe-list-view: ^3.2.9
     react-native-user-avatar: ^1.0.8
     react-native-vector-icons: ^10.1.0
     react-test-renderer: 18.2.0
@@ -7996,6 +7997,17 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react-native-swipe-list-view@npm:^3.2.9":
+  version: 3.2.9
+  resolution: "react-native-swipe-list-view@npm:3.2.9"
+  peerDependencies:
+    prop-types: ">=15.5.0"
+    react: ">=0.14.8"
+    react-native: ">=0.23.1"
+  checksum: e6fa7f60bcdffdffe0567144e01f4e53b78eff2dfb7f5bad0f560336d039afc5b02603281b5ef0c8b0de86f1cd94c50f943676f25c3f42cc390bedb02df9536d
   languageName: node
   linkType: hard
 

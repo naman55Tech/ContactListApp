@@ -20,4 +20,11 @@ export const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 20,
   },
+  hiddenContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    gap: 30,
+    marginLeft: 30,
+  },
 });
