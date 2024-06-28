@@ -1,4 +1,4 @@
-import {Contact} from './types';
+import {ActionType, Contact} from './types';
 
 export const sampleContacts: Contact[] = [
   {
@@ -82,3 +82,8 @@ export const sampleContacts: Contact[] = [
     name: 'Jennifer Thomas',
   },
 ];
+
+export const ActionTypes: ActionType = {
+  edit: 'EDIT',
+  delete: 'DELETE',
+};

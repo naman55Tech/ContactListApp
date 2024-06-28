@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Modal, TouchableOpacity, Text, Button} from 'react-native';
+import {View, Modal, TouchableOpacity, Text} from 'react-native';
 import {customModalStyles} from './CustomDialog.styles';
+import {Button} from '../button/Button';
+import {Colors} from '../../utils/colors';
 
 type Props = {
   visible: boolean;
@@ -45,7 +47,12 @@ export const CustomDialog: React.FC<Props> = ({
           {children}
           <View style={customModalStyles.btnContainer}>
             {onCancel && (
-              <Button onPress={onCancel} title={cancelBtnText ?? ''} />
+              <Button
+                onPress={onCancel}
+                title={cancelBtnText ?? ''}
+                containerStyle={customModalStyles.cancelBtn}
+                titleStyle={{color: Colors.white}}
+              />
             )}
             {onConfirm && (
               <Button onPress={onConfirm} title={confirmBtnText ?? ''} />

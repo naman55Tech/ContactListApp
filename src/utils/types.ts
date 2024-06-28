@@ -6,3 +6,8 @@ export type Contact = {
   avatar: string;
   name: string;
 };
+
+export type ActionType = {
+  edit: string;
+  delete: string;
+};

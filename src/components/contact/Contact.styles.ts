@@ -35,4 +35,12 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     marginLeft: 10,
   },
+  nameContainer: {
+    flex: 1,
+  },
+  actionContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    marginTop: 5,
+  },
 });

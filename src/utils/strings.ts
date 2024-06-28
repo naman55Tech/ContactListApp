@@ -15,4 +15,9 @@ export const Strings = {
   REQUIRED_FIELDS: 'Please fill all required fields',
   INVALID_PHONE_NUMBER: 'Invalid phone number',
   INVALID_EMAIL: 'Invalid Email',
+  DELETE_CONTACT: 'Delete contact',
+  CONFIRM_DELETE: 'Are you sure you want to delete this contact?',
+  DELETE: 'Delete',
+  EDIT_CONTACT: 'Edit Contact',
+  EDIT: 'Edit',
 };

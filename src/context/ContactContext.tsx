@@ -10,6 +10,8 @@ export type ContactListContextValue = {
   data?: ContactData;
   addContact: (contact: Contact) => void;
   handleSearch: (query: string) => void;
+  deleteContact: (contact: Contact) => void;
+  editContact: (contact: Contact) => void;
 };
 export const ContactListContext = React.createContext(
   {} as ContactListContextValue,
@@ -41,11 +43,23 @@ export const ContactListProvider = ({children, value}: Props) => {
     setFilteredContacts({filteredContacts: sortContactsList(filtered)});
   };
 
+  const deleteContact = (contact: Contact) => {
+    const updatedData = contacts.filter(c => c.id !== contact.id);
+    setContacts(sortContactsList(updatedData));
+  };
+
+  const editContact = (contact: Contact) => {
+    const updatedData = contacts.map(c => (c.id === contact.id ? contact : c));
+    setContacts(sortContactsList(updatedData));
+  };
+
   const contactListContext = {
     data,
     addContact,
     handleSearch,
     setFilteredContacts,
+    deleteContact,
+    editContact,
   };
 
   return (

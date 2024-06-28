@@ -16,6 +16,8 @@ export const customModalStyles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: 'row',
+    gap: 10,
+    marginVertical: 10,
   },
   cancelBtnText: {
     marginTop: 10,
@@ -39,5 +41,15 @@ export const customModalStyles = StyleSheet.create({
     marginVertical: 3,
     color: Colors.white,
   },
-  contentText: {alignSelf: 'center', fontSize: 15, marginVertical: 5},
+  contentText: {
+    alignSelf: 'center',
+    fontSize: 15,
+    marginVertical: 5,
+    color: Colors.white,
+  },
+  cancelBtn: {
+    borderColor: Colors.white,
+    borderWidth: 1,
+    backgroundColor: Colors.transparent,
+  },
 });

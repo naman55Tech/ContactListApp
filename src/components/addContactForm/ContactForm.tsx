@@ -1,22 +1,34 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import CustomTextInput from '../textInput/TextInput';
-import {styles} from './AddContactForm.styles';
+import {styles} from './ContactForm.styles';
 import {Button} from '../button/Button';
 import {Colors} from '../../utils/colors';
 import {useContactListContext} from '../../context/ContactContext';
 import {Strings} from '../../utils/strings';
+import {Contact} from '../../utils/types';
+import {ActionTypes} from '../../utils/data';
 
 type props = {
   onCancel: () => void;
+  contactToTakeAction:
+    | {
+        contact: Contact;
+        action: string;
+      }
+    | undefined;
 };
 
-const AddContactForm: React.FC<props> = ({onCancel}) => {
-  const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const {addContact} = useContactListContext();
+const ContactForm: React.FC<props> = ({onCancel, contactToTakeAction}) => {
+  const [name, setName] = useState(contactToTakeAction?.contact?.name ?? '');
+  const [phoneNumber, setPhoneNumber] = useState(
+    contactToTakeAction?.contact?.phone ?? '',
+  );
+  const [email, setEmail] = useState(contactToTakeAction?.contact?.email ?? '');
+  const [address, setAddress] = useState(
+    contactToTakeAction?.contact?.address ?? '',
+  );
+  const {addContact, editContact} = useContactListContext();
   const [error, setError] = useState('');
 
   const resetState = () => {
@@ -27,7 +39,7 @@ const AddContactForm: React.FC<props> = ({onCancel}) => {
     setAddress('');
   };
 
-  const handleAddContact = () => {
+  const handleSavePressed = () => {
     // Here you can perform actions when the "Add" button is pressed,
     // such as saving the data or navigating to another screen.
     if (!name || !phoneNumber || !email || !address) {
@@ -45,14 +57,25 @@ const AddContactForm: React.FC<props> = ({onCancel}) => {
       return;
     }
 
-    addContact({
-      name,
-      phone: phoneNumber,
-      email,
-      address,
-      id: Math.random(),
-      avatar: 'https://picsum.photos/200/200',
-    });
+    if (contactToTakeAction?.action === ActionTypes.edit) {
+      editContact({
+        name,
+        phone: phoneNumber,
+        email,
+        address,
+        id: contactToTakeAction.contact.id,
+        avatar: 'https://picsum.photos/200/200',
+      });
+    } else {
+      addContact({
+        name,
+        phone: phoneNumber,
+        email,
+        address,
+        id: Math.random(),
+        avatar: 'https://picsum.photos/200/200',
+      });
+    }
 
     resetState();
     onCancel();
@@ -115,7 +138,7 @@ const AddContactForm: React.FC<props> = ({onCancel}) => {
       {error ? <Text style={styles.error}>{error}</Text> : null}
 
       <View style={styles.btnContainer}>
-        <Button title={Strings.SAVE} onPress={handleAddContact} />
+        <Button title={Strings.SAVE} onPress={handleSavePressed} />
         <Button
           title={Strings.CANCEL}
           onPress={() => {
@@ -130,4 +153,4 @@ const AddContactForm: React.FC<props> = ({onCancel}) => {
   );
 };
 
-export default AddContactForm;
+export default ContactForm;
