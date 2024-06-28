@@ -9,7 +9,7 @@ export const customModalStyles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   innerContainer: {
-    backgroundColor: '#161616',
+    backgroundColor: Colors.backgroundBlack,
     padding: 20,
     borderRadius: 20,
     width: '95%',

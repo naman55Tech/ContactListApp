@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     marginHorizontal: 15,
     marginVertical: 15,
-    backgroundColor: '#070707',
+    backgroundColor: Colors.darkBlack,
   },
   innerContainer: {
     flexDirection: 'row',
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
   },
   address: {
-    color: Colors.white,
+    color: Colors.gray,
     fontWeight: '500',
     fontSize: 10,
   },
@@ -45,6 +45,6 @@ export const styles = StyleSheet.create({
   },
   horizontal: {
     height: 1,
-    backgroundColor: '#1E1E1E',
+    backgroundColor: Colors.lightWhite,
   },
 });
