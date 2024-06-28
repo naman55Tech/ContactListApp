@@ -6,12 +6,19 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.backgroundBlack,
     height: '100%',
   },
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 20,
+    marginRight: 30,
+    marginTop: 40,
+    marginVertical: 20,
+    alignItems: 'center',
+  },
   heading: {
     color: Colors.white,
-    textAlign: 'center',
     fontSize: 25,
     fontWeight: '700',
-    marginVertical: 20,
   },
   noContactText: {
     color: Colors.white,

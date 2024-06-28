@@ -1,5 +1,5 @@
 export const Strings = {
-  CONTACTS: 'Contacts',
+  CONTACTS: 'My Contacts',
   NO_CONTACT_FOUND: 'No Contacts Found',
   ADD_CONTACT: 'Add Contact',
   ENTER_NAME: 'Enter name',

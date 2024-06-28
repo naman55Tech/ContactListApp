@@ -75,13 +75,18 @@ export const Contacts: React.FC<Props> = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>{Strings.CONTACTS}</Text>
-      <SearchBar
-        onSearch={handleSearch}
-        onOptionClick={() => {
-          setShowContactForm(true);
-        }}
-      />
+      <View style={styles.headerContainer}>
+        <Text style={styles.heading}>{Strings.CONTACTS}</Text>
+        <AntDesign
+          name="adduser"
+          color={Colors.white}
+          size={25}
+          onPress={() => {
+            setShowContactForm(true);
+          }}
+        />
+      </View>
+      <SearchBar onSearch={handleSearch} />
       {contactList?.filteredContacts?.length ? (
         <SwipeListView
           data={contactList?.filteredContacts}
