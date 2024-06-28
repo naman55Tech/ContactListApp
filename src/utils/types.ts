@@ -7,6 +7,7 @@ export type Contact = {
   name: string;
 };
 
+// Defined action types for processing button clicks and other decision makings
 export type ActionType = {
   edit: string;
   delete: string;

@@ -20,6 +20,7 @@ type props = {
 };
 
 const ContactForm: React.FC<props> = ({onCancel, contactToTakeAction}) => {
+  // states for maintaining values of differnet fields
   const [name, setName] = useState(contactToTakeAction?.contact?.name ?? '');
   const [phoneNumber, setPhoneNumber] = useState(
     contactToTakeAction?.contact?.phone ?? '',
@@ -29,8 +30,11 @@ const ContactForm: React.FC<props> = ({onCancel, contactToTakeAction}) => {
     contactToTakeAction?.contact?.address ?? '',
   );
   const {addContact, editContact} = useContactListContext();
+
+  // state for maintaining error message
   const [error, setError] = useState('');
 
+  // Reset state when the modal is closed
   const resetState = () => {
     setError('');
     setName('');

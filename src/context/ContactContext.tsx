@@ -24,18 +24,20 @@ type Props = React.PropsWithChildren<{
 export const ContactListProvider = ({children, value}: Props) => {
   const [contacts, setContacts] = useState<Contact[]>(
     sortContactsList(sampleContacts),
-  );
-  const [data, setFilteredContacts] = useState({...value?.data});
+  ); // state for maintaing original list of sorted contacts
+  const [data, setFilteredContacts] = useState({...value?.data}); // state for storing filtered contacts
 
   useEffect(() => {
     setFilteredContacts({filteredContacts: contacts});
   }, [contacts]);
 
+  // handler for adding contact to list
   const addContact = (contact: Contact) => {
     const updatedData = [...contacts, contact];
     setContacts(sortContactsList(updatedData));
   };
 
+  // Function to search for contacts based on a query string within names
   const handleSearch = (query: string) => {
     const filtered = contacts.filter(contact =>
       contact.name.toLowerCase().includes(query.toLowerCase()),
@@ -43,11 +45,13 @@ export const ContactListProvider = ({children, value}: Props) => {
     setFilteredContacts({filteredContacts: sortContactsList(filtered)});
   };
 
+  // handler for deleting contact from list
   const deleteContact = (contact: Contact) => {
     const updatedData = contacts.filter(c => c.id !== contact.id);
     setContacts(sortContactsList(updatedData));
   };
 
+  // handler for editing contact in list
   const editContact = (contact: Contact) => {
     const updatedData = contacts.map(c => (c.id === contact.id ? contact : c));
     setContacts(sortContactsList(updatedData));

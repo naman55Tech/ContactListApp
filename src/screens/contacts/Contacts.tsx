@@ -16,12 +16,12 @@ import {Colors} from '../../utils/colors';
 type Props = {};
 
 export const Contacts: React.FC<Props> = () => {
-  const [showContactForm, setShowContactForm] = useState(false);
-  const [isShowWarningModal, setIsShowWarningModal] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false); // For visiblity of adding and editing contact form
+  const [isShowWarningModal, setIsShowWarningModal] = useState(false); // For showing warning dialog while deleting a contact
   const [contactToTakeAction, setContactToTakeAction] = useState<{
     contact: Contact;
     action: string;
-  }>();
+  }>(); // Object specifying type of action(edit/delete) to be taken on a specific contact
 
   const {
     data: contactList,
@@ -29,12 +29,14 @@ export const Contacts: React.FC<Props> = () => {
     deleteContact,
   } = useContactListContext();
 
+  // Reset state of screen
   const resetActionData = () => {
     setIsShowWarningModal(false);
     setShowContactForm(false);
     setContactToTakeAction(undefined);
   };
 
+  // Retrieves action buttons for editing or deleting a contact when swiping a contact
   const renderHiddenItem = (
     data: ListRenderItemInfo<Contact>,
     _rowMap: RowMap<Contact>,
@@ -69,6 +71,7 @@ export const Contacts: React.FC<Props> = () => {
     );
   };
 
+  // Renders contact view
   const renderContact = (item: Contact) => {
     return <ContactView contact={item} />;
   };
